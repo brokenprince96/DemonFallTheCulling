@@ -1,0 +1,98 @@
+Player
+-party members being pushed across map (auto movement)
+-Must use 2 actions per day to avoid being overtaken by monsters
+-safety and defense stats
+-percentage likelihood of finding survivors or supplies
+-perception to search for safe locations
+-HP
+-status effects
+-likelihood of shelter discovery
+-can level up
+-stat growth limited over time
+-equip weapons, armor, and trinkets to modify stats
+
+Actions
+-5 Day and 3 Night types per 24hr cycle
+-can trigger enemy encounters
+-finding shelter
+
+--Day--
+-move through map
+-scavenge
+-scout
+-listen to radio
+-emergency rest
+
+--Night--
+-Fortify Shelter
+-Scavenge Local
+-Heal and Recover
+-Listen to radio
+stay silent
+
+
+Scripted Events
+-triggered by actions
+
+Enemies
+-pushing player across map
+-30-40% stronger at night
+-encounters triggered by actions
+
+Level
+-Day/Night cycle
+
+Items
+-food
+-tools
+-radio
+-other
+
+Shelter System
+-procedurally generated with random stats
+-defensibility
+-possible supplies
+-facilities
+-hospital, grocery store, etc..
+-effectiveness depends on party size
+-small party needs small shelter, larger party needs larger shelter
+
+Survivors
+-randomly assigned class type
+-can level up
+-stat growth limited over time
+
+Battle System
+-turn based
+-tactical positioning elements
+
+Battle Classes Stats
+-survivability
+-damage
+-taunt
+-dodge
+-health
+-speed
+-defense
+-rarity
+-attack target
+-ammo amount
+-magic
+-curses
+-debuffs
+-spells
+
+Battle Class types
+-Melee
+-Warrior
+-Assasin
+-Possessed
+-Gunner
+-Archer
+-Occultist
+
+Battle Menu
+-Normal Attack
+-Special Attack
+-Use Item
+-Flee
