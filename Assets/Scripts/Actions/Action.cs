@@ -1,20 +1,17 @@
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Action : MonoBehaviour
 {
-    protected Player player;
     static protected int interupt = 0;
     static protected float actionLength = 0;
 
     float enemyEncounterChance = -0.5f;
     float scriptedEventChance = -0.2f;
 
-    private void Start()
-    {
-        player = GameObject.Find("Player").GetComponent<Player>();
-    }
-
-    public virtual void Use()
+    //called when ANY action button is clicked
+    public virtual void InitAction()
     {
         if (actionLength > 0)
             return;

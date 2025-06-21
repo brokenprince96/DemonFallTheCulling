@@ -2,16 +2,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     Animator animator;
     float m_health = 1.0f;
 
-    private void Start()
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public float PlayAnimation(string name)
     {
+        animator = GetComponent<Animator>();
         animator.SetTrigger(name);
 
         RuntimeAnimatorController controller = animator.runtimeAnimatorController;
@@ -19,7 +30,7 @@ public class Player : MonoBehaviour
         // Loop through all animation clips in the controller
         foreach (AnimationClip clip in controller.animationClips)
         {
-            if (clip.name.Contains("Move"))
+            if (clip.name.Contains(name))
                 return clip.length;
         }
 

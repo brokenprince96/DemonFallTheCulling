@@ -4,13 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class Move : Action
 {
-    public override void Use()
+    //called when button is clicked
+    public override void InitAction()
     {
-        base.Use();
-        actionLength = player.PlayAnimation("move");
-        
-        Debug.Log($"action length: {actionLength}");
-
+        base.InitAction();
+        actionLength = Player.Instance.PlayAnimation("move");
         StartCoroutine(WaitForAnimation(actionLength));
     }
 

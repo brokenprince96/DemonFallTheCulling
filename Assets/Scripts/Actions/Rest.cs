@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Rest : Action
 {
-    public override void Use()
+    public override void InitAction()
     {
-        base.Use();
+        base.InitAction();
         Debug.Log("resting...");
     }
 }

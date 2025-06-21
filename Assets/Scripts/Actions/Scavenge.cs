@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Scavenge : Action
@@ -11,7 +10,6 @@ public class Scavenge : Action
     const int numSupplies = 3;
     Supply[] findableSupplies = new Supply[numSupplies];
 
-
     // Prepare a list of possible supplies to choose from
     Supply[] possibleSupplies = new Supply[]
     {
@@ -19,12 +17,19 @@ public class Scavenge : Action
     new Tool()
     };
 
-    private void Start()
+    public override void InitAction()
     {
-        //scavenge script must be attached to player in scavenge level
-        if(SceneManager.GetActiveScene().name.Contains("Scavenge"))
+        base.InitAction();
+        GameManager.Instance.LoadActionScene("Scavenge");
+    }
+
+    //---------------------------------------------called when scavenge level is loaded-----------------------------------------------------------
+    protected void Start()
+    {
+        //scavenge script must be in scavenge level
+        if (SceneManager.GetActiveScene().name.Contains("Scavenge"))
         {
-            scavengeTime = Random.Range(5.0f, 10.0f);
+            scavengeTime = Player.Instance.PlayAnimation("Scavenge");
 
             // Randomly assign supplies to the array
             for (int i = 0; i < findableSupplies.Length; i++)
@@ -37,13 +42,8 @@ public class Scavenge : Action
                 interuptTime = Random.Range(scavengeTime / 2, scavengeTime - 1.0f);
 
 
-            StartCoroutine(SearchForSupplies(Random.Range(5.0f, 10.0f)));
+            StartCoroutine(SearchForSupplies(scavengeTime));
         }
-    }
-    public override void Use()
-    {
-        base.Use();
-        GameManager.Instance.LoadActionScene("Scavenge");
     }
 
     IEnumerator SearchForSupplies(float duration)
@@ -72,8 +72,6 @@ public class Scavenge : Action
             // Step 3: Check for supply time match
             if (supplyIndex < supplyTimes.Count && elapsed >= supplyTimes[supplyIndex])
             {
-                Debug.Log("supply found at: " + supplyTimes[0]);
-
                 Inventory.Instance.AddSupply(findableSupplies[supplyIndex]);
                 supplyIndex++;
             }
