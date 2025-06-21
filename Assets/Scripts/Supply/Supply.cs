@@ -1,12 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Supply
+public class Supply
 {
     protected Sprite image;
-    public abstract void Use();
+    Sprite[] sprites = new Sprite[10];
 
-    public abstract void SetImage();
+    public virtual void Use()
+    {
+    }
 
-    public abstract Sprite GetImage();
+    public void SetImage()
+    {
+        sprites = Resources.LoadAll<Sprite>(GetType() + "Images");
+        image = sprites[0];
+    }
+
+    public Sprite GetImage()
+    {
+        return image;
+    }
 }

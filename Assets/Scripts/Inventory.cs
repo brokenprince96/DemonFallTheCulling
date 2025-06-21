@@ -38,9 +38,6 @@ public class Inventory : MonoBehaviour
         {
             if (supplies[i] != null)
             {
-                Debug.Log("Inventory: OnEnable() show slot: " + i);
-                supplies[i].SetImage();
-                Sprite sprite = supplies[i].GetImage();
                 inventoryImages[i].sprite = supplies[i].GetImage();
                 inventoryImages[i].color = Color.white; //image is white square if no sprite
             }
@@ -55,7 +52,7 @@ public class Inventory : MonoBehaviour
             if (supplies[i] == null)
             {
                 supplies[i] = newSupply;
-                Debug.Log("Inventory: added supply at slot: " + i);
+                newSupply.SetImage();
                 return true;
             }
         }
