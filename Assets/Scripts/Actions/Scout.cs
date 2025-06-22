@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class Scout : Action
 {
     public string survivorName;
+    float findSurvivorChance = 0.0f;
+    float totalSearchTime = 10.0f;
+    float possibleFindTime = 8.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,24 +15,29 @@ public class Scout : Action
         if (SceneManager.GetActiveScene().name.Contains("Scout"))
         {
             Debug.Log("start scouting!");
-            StartCoroutine(SearchForSurvivors(10.0f));
+            findSurvivorChance = Player.Instance.GetStat(0) / 10.0f;
+            StartCoroutine(SearchForSurvivors(totalSearchTime));
         }
     }
 
     IEnumerator SearchForSurvivors(float duration)
     {
+        float chance = Random.Range(0.0f, 1.0f);
         float elapsed = 0f;
+
+        Debug.Log(findSurvivorChance + " > " + chance);
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
 
-            Debug.Log(elapsed + ": Searching for " + survivorName + "...");
-
-            if (elapsed > 8.0f)
+            if (elapsed > possibleFindTime)
             {
-                SpawnSurvivor();
-                yield break;
+                if(findSurvivorChance > chance)
+                {
+                    SpawnSurvivor();
+                    yield break;
+                }
             }
 
             yield return null;

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -5,7 +6,9 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     Animator animator;
-    float m_health = 1.0f;
+    Stats stats = new Stats();
+    float health = 1.0f;
+
 
     private void Awake()
     {
@@ -37,8 +40,35 @@ public class Player : MonoBehaviour
         return -1.0f;
     }
 
+    public void IncreaseStat(int stat)
+    {
+        switch (stat)
+        {
+            case 0:
+                stats.perception++;
+                break; 
+            default:
+                Debug.LogWarning("stat doesn't exist");
+                break; 
+        }
+    }
+
+    public int GetStat(int stat)
+    {
+        switch (stat)
+        {
+            case 0:
+                return stats.perception;
+            default:
+                Debug.LogWarning("stat doesn't exist");
+                break;
+        }
+
+        return -1;
+    }
+
     public float GetHealth()
     {
-        return m_health;
+        return health;
     }
 }
