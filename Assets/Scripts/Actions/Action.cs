@@ -11,7 +11,7 @@ public class Action : MonoBehaviour
     float scriptedEventChance = -0.2f;
 
     //called when ANY action button is clicked
-    public virtual void InitAction()
+    public virtual void InitAction(string action)
     {
         if (actionLength > 0)
             return;
@@ -27,6 +27,9 @@ public class Action : MonoBehaviour
         {
             interupt = 2;
         }
+
+        GameManager.Instance.LoadActionScene(action);
+
     }
 
 }

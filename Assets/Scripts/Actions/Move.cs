@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class Move : Action
 {
     //called when button is clicked
-    public override void InitAction()
+    public override void InitAction(string action)
     {
-        base.InitAction();
-        actionLength = Player.Instance.PlayAnimation("move");
+        base.InitAction(action);
+        actionLength = Player.Instance.PlayAnimation(action);
         StartCoroutine(WaitForAnimation(actionLength));
     }
 

@@ -26,7 +26,7 @@ public class ActionController : MonoBehaviour
         {
             if(buttonName == possibleActions[i].GetType().ToString())
             {
-                possibleActions[i].InitAction();
+                possibleActions[i].InitAction(buttonName);
             }
         }
     }
