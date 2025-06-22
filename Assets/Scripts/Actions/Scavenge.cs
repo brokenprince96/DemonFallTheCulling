@@ -18,7 +18,7 @@ public class Scavenge : Action
     };
 
     //---------------------------------------------called when scavenge level is loaded-----------------------------------------------------------
-    protected void Start()
+    public void Start()
     {
         //scavenge script must be in scavenge level
         if (SceneManager.GetActiveScene().name.Contains("Scavenge"))
