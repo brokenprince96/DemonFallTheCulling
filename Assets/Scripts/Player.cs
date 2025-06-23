@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
         switch (stat)
         {
             case 0:
-                Debug.Log("returning perception level: " + stats.perception);
                 return stats.perception;
             default:
                 Debug.LogWarning("stat doesn't exist");

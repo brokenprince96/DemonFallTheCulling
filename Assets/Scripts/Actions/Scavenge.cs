@@ -17,6 +17,13 @@ public class Scavenge : Action
     new Tool()
     };
 
+    public override void InitAction(string action)
+    {
+        //not all actions load levels
+        base.InitAction(action);
+        GameManager.Instance.LoadActionScene(action);
+    }
+
     //---------------------------------------------called when scavenge level is loaded-----------------------------------------------------------
     public void Start()
     {

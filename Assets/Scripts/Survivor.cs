@@ -1,18 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Survivor : Action
+public class Survivor : MonoBehaviour
 {
     public string survivorName;
     public AnimatorOverrideController overrideController;
     Animator animator;
-
-    public override void InitAction(string action)
-    {
-        //not all actions load new levels
-        base.InitAction(action);
-        GameManager.Instance.LoadActionScene(action);
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,12 +40,10 @@ public class Survivor : Action
             if (replacement != null)
             {
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(original, replacement));
-                Debug.Log($"Replacing '{original.name}' with '{replacement.name}'");
             }
             else
             {
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(original, original));
-                Debug.LogWarning($"No replacement found for '{original.name}'");
             }
         }
 

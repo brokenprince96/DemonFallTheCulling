@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using UnityEngine.SceneManagement;
 
 public class Scout : Action
@@ -21,7 +23,6 @@ public class Scout : Action
     {
         if (SceneManager.GetActiveScene().name.Contains("Scout"))
         {
-            Debug.Log("start scouting!");
             findSurvivorChance = Player.Instance.GetStat(0) / 10.0f;
             StartCoroutine(SearchForSurvivors(totalSearchTime));
         }
@@ -31,30 +32,56 @@ public class Scout : Action
     {
         float chance = Random.Range(0.0f, 1.0f);
         float elapsed = 0f;
+        float dt = 0.5f;
+        int dotCount = 3;
+        string baseText = "Lets see if we can find anyone";
 
         Debug.Log(findSurvivorChance + " > " + chance);
+        Debug.Log(possibleFindTime);
 
+        findSurvivorChance = 1.1f;
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += dt;
+            Debug.Log(elapsed + ": looking for survivors...");
 
-            if (elapsed > possibleFindTime)
-            {
-                if(findSurvivorChance > chance)
-                {
-                    SpawnSurvivor();
-                    yield break;
-                }
-            }
+            dotCount = (dotCount % 3) + 1; // Cycle 1 2 3
+            string dots = new string('.', dotCount);
+            DialogueController.Instance.SetDialgoue(baseText + dots);
+            yield return new WaitForSeconds(dt); // Adjust timing if needed
+            
+        }
 
-            yield return null;
+        if (findSurvivorChance > chance)
+        {
+            StartCoroutine(SpawnSurvivor(duration - elapsed));
+        }
+        else
+        {
+            GameManager.Instance.LoadPrevScene();
         }
     }
 
-    void SpawnSurvivor()
+    IEnumerator SpawnSurvivor(float duration)
     {
+        duration += 5.0f;
+        DialogueController.Instance.SetDialgoue("Someone's there! It's " + survivorName + "!");
         Object survivor = Resources.Load("Survivors/" + survivorName);
         GameObject survivorInstance = (GameObject)GameObject.Instantiate(survivor);
+
+        float elapsed = 0.0f;
+        
+        while(elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            Debug.Log(elapsed + ": survivor found");
+
+            yield return null;
+        }
+
+        GameManager.Instance.LoadPrevScene();
     }
+
 
 }
