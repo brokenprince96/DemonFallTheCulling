@@ -17,8 +17,8 @@ public class StatController : MonoBehaviour
 
     public void OnPlayerClicked()
     {
+        perception.text = Player.Instance.GetStat(0).ToString();
         gameObject.SetActive(true);
-
     }
 
     public void OnCloseClicked()

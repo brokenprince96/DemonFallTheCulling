@@ -27,9 +27,6 @@ public class Action : MonoBehaviour
         {
             interupt = 2;
         }
-
-        GameManager.Instance.LoadActionScene(action);
-
     }
 
 }

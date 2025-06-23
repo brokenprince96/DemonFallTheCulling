@@ -1,11 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Survivor : MonoBehaviour
+public class Survivor : Action
 {
     public string survivorName;
     public AnimatorOverrideController overrideController;
     Animator animator;
+
+    public override void InitAction(string action)
+    {
+        //not all actions load new levels
+        base.InitAction(action);
+        GameManager.Instance.LoadActionScene(action);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

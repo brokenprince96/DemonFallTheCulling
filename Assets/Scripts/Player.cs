@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public float PlayAnimation(string name)
     {
         animator = GetComponent<Animator>();
-        animator.SetTrigger(name);
+        animator.Play(name);
 
         RuntimeAnimatorController controller = animator.runtimeAnimatorController;
 
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         switch (stat)
         {
             case 0:
+                Debug.Log("returning perception level: " + stats.perception);
                 return stats.perception;
             default:
                 Debug.LogWarning("stat doesn't exist");

@@ -9,6 +9,13 @@ public class Scout : Action
     float totalSearchTime = 10.0f;
     float possibleFindTime = 8.0f;
 
+    public override void InitAction(string action)
+    {
+        //not all actions load scenes
+        base.InitAction(action);
+        GameManager.Instance.LoadActionScene(action);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
