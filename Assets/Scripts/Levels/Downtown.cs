@@ -6,6 +6,8 @@ public class Downtown : MonoBehaviour
     void Start()
     {
         DialogueController.Instance.SetDialgoue("Downtown LA's not looking too good...");
+        Player.Instance.PlayAnimation("Idle");
+
     }
 
 }

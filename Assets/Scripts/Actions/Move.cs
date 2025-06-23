@@ -8,7 +8,13 @@ public class Move : Action
     public override void InitAction(string action)
     {
         base.InitAction(action);
+        if (actionLength > 0)
+            return;
+
         actionLength = Player.Instance.PlayAnimation(action);
+
+        DialogueController.Instance.SetDialgoue("Let keep going...");
+
         StartCoroutine(WaitForAnimation(actionLength));
     }
 
@@ -22,6 +28,7 @@ public class Move : Action
             yield return null;
         }
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        actionLength = 0.0f;
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % 2);
     }
 }

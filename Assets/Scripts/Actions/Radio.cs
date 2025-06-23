@@ -7,6 +7,9 @@ public class Radio : Action
     {
         base.InitAction(action);
 
+        if (actionLength < 0)
+            return;
+
         float radioLength = Player.Instance.PlayAnimation("Radio");
         Player.Instance.IncreaseStat(0);
 
@@ -31,6 +34,8 @@ public class Radio : Action
             yield return new WaitForSeconds(dt); // Adjust timing if needed
         }
 
+        Player.Instance.PlayAnimation("Idle");
+        actionLength = 0.0f;
         DialogueController.Instance.SetDowntownDialogue();
     }
 }

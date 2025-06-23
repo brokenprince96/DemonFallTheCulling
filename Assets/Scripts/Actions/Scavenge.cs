@@ -31,6 +31,7 @@ public class Scavenge : Action
         if (SceneManager.GetActiveScene().name.Contains("Scavenge"))
         {
             scavengeTime = Player.Instance.PlayAnimation("Scavenge");
+            DialogueController.Instance.SetDialgoue("Lets see if we can find some supplies...");
 
             // Randomly assign supplies to the array
             for (int i = 0; i < findableSupplies.Length; i++)

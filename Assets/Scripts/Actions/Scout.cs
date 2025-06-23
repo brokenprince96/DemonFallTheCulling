@@ -36,14 +36,9 @@ public class Scout : Action
         int dotCount = 3;
         string baseText = "Lets see if we can find anyone";
 
-        Debug.Log(findSurvivorChance + " > " + chance);
-        Debug.Log(possibleFindTime);
-
-        findSurvivorChance = 1.1f;
         while (elapsed < duration)
         {
             elapsed += dt;
-            Debug.Log(elapsed + ": looking for survivors...");
 
             dotCount = (dotCount % 3) + 1; // Cycle 1 2 3
             string dots = new string('.', dotCount);
@@ -74,8 +69,6 @@ public class Scout : Action
         while(elapsed < duration)
         {
             elapsed += Time.deltaTime;
-
-            Debug.Log(elapsed + ": survivor found");
 
             yield return null;
         }

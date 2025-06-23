@@ -53,11 +53,13 @@ public class Inventory : MonoBehaviour
             {
                 supplies[i] = newSupply;
                 newSupply.SetImage();
+                DialogueController.Instance.SetDialgoue(newSupply.GetType() + " added!");
                 return true;
             }
         }
 
-        Debug.LogWarning("Inventory full!");
+        DialogueController.Instance.SetDialgoue(newSupply.GetType() + " found but inventory is full!");
+
         return false;
     }
 

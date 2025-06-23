@@ -13,9 +13,6 @@ public class Action : MonoBehaviour
     //called when ANY action button is clicked
     public virtual void InitAction(string action)
     {
-        if (actionLength > 0)
-            return;
-
         float encounterEnemy = Random.Range(0.0f, 1.0f);
         float scriptedEvent = Random.Range(0.0f, 1.0f);
 
