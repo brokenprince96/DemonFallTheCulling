@@ -42,10 +42,6 @@ public class Scout : Action
         {
             StartCoroutine(SpawnSurvivor(duration - elapsed));
         }
-        else
-        {
-            GameManager.Instance.LoadPrevScene();
-        }
     }
 
     IEnumerator SpawnSurvivor(float duration)
