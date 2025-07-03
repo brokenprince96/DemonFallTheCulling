@@ -1,6 +1,6 @@
+
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Move : Action
 {
@@ -8,27 +8,22 @@ public class Move : Action
     public override void InitAction(string action)
     {
         base.InitAction(action);
-        if (actionLength > 0)
-            return;
 
-        actionLength = Player.Instance.PlayAnimation(action);
-
-        DialogueController.Instance.SetDialgoue("Let keep going...");
-
-        StartCoroutine(WaitForAnimation(actionLength));
+        DialogueController.Instance.SetDialgoue("Lets keep going...");
+        StartCoroutine(Moving(5.0f));
     }
 
-    IEnumerator WaitForAnimation(float duration)
+    IEnumerator Moving(float duration)
     {
-        float elapsed = 0f;
+        float elapsed = 0.0f;
 
-        while (elapsed < duration)
+        while(elapsed < duration)
         {
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        actionLength = 0.0f;
-        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % 2);
+        DialogueController.Instance.SetDialgoue("Downtown LA is not looking too good...");
     }
+
 }

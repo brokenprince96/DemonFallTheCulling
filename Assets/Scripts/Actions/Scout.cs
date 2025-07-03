@@ -9,23 +9,14 @@ public class Scout : Action
     public string survivorName;
     float findSurvivorChance = 0.0f;
     float totalSearchTime = 10.0f;
-    float possibleFindTime = 8.0f;
 
     public override void InitAction(string action)
     {
         //not all actions load scenes
         base.InitAction(action);
-        GameManager.Instance.LoadActionScene(action);
-    }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if (SceneManager.GetActiveScene().name.Contains("Scout"))
-        {
-            findSurvivorChance = Player.Instance.GetStat(0) / 10.0f;
-            StartCoroutine(SearchForSurvivors(totalSearchTime));
-        }
+        findSurvivorChance = StatController.Instance.GetStat(0) / 10.0f;
+        StartCoroutine(SearchForSurvivors(totalSearchTime));
     }
 
     IEnumerator SearchForSurvivors(float duration)
@@ -62,7 +53,7 @@ public class Scout : Action
         duration += 5.0f;
         DialogueController.Instance.SetDialgoue("Someone's there! It's " + survivorName + "!");
         Object survivor = Resources.Load("Survivors/" + survivorName);
-        GameObject survivorInstance = (GameObject)GameObject.Instantiate(survivor);
+        GameObject survivorInstance = (GameObject)Instantiate(survivor);
 
         float elapsed = 0.0f;
         
@@ -72,9 +63,5 @@ public class Scout : Action
 
             yield return null;
         }
-
-        GameManager.Instance.LoadPrevScene();
     }
-
-
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ public class ActionController : MonoBehaviour
 {
     public List<Button> actionButtons; // Assigned via Inspector
     public List<Action> possibleActions; // Assigned via Inspector
+    public TextMeshProUGUI dayActionsRemaining;
+    int numDayActions = 5;
 
     private void Awake()
     {
@@ -26,6 +29,7 @@ public class ActionController : MonoBehaviour
         {
             if(buttonName == possibleActions[i].GetType().ToString())
             {
+                dayActionsRemaining.text = "Day Actions Remaining: " + --numDayActions;
                 possibleActions[i].InitAction(buttonName);
             }
         }

@@ -7,13 +7,12 @@ public class Radio : Action
     {
         base.InitAction(action);
 
-        if (actionLength < 0)
+        if (actionLength > 0)
             return;
 
-        float radioLength = Player.Instance.PlayAnimation("Radio");
-        Player.Instance.IncreaseStat(0);
+        StatController.Instance.IncreaseStat(0);
 
-        StartCoroutine(SendOutRadio(radioLength));
+        StartCoroutine(SendOutRadio(actionLength));
     }
 
     IEnumerator SendOutRadio(float duration)
@@ -28,14 +27,13 @@ public class Radio : Action
             elapsed += dt;
 
             dotCount = (dotCount % 3) + 1; // Cycle 1 2 3
-            string dots = new string('.', dotCount);
+            string dots = new('.', dotCount);
             DialogueController.Instance.SetDialgoue(baseText + dots);
 
             yield return new WaitForSeconds(dt); // Adjust timing if needed
         }
 
-        Player.Instance.PlayAnimation("Idle");
-        actionLength = 0.0f;
+        actionLength = -1f;
         DialogueController.Instance.SetDowntownDialogue();
     }
 }

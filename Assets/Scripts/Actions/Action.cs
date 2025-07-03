@@ -1,6 +1,5 @@
-using Unity.IO.LowLevel.Unsafe;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Action : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class Action : MonoBehaviour
         float encounterEnemy = Random.Range(0.0f, 1.0f);
         float scriptedEvent = Random.Range(0.0f, 1.0f);
 
-        if(encounterEnemy <= enemyEncounterChance)
+        if (encounterEnemy <= enemyEncounterChance)
         {
             interupt = 1;
         }

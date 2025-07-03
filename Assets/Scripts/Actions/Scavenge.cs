@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Scavenge : Action
 {
-    float scavengeTime = 0.0f;
+    float scavengeTime = 5.0f;
     static float interuptTime = -1.0f;
     const int numSupplies = 3;
     Supply[] findableSupplies = new Supply[numSupplies];
@@ -21,31 +20,21 @@ public class Scavenge : Action
     {
         //not all actions load levels
         base.InitAction(action);
-        GameManager.Instance.LoadActionScene(action);
-    }
 
-    //---------------------------------------------called when scavenge level is loaded-----------------------------------------------------------
-    public void Start()
-    {
-        //scavenge script must be in scavenge level
-        if (SceneManager.GetActiveScene().name.Contains("Scavenge"))
+        DialogueController.Instance.SetDialgoue("Lets see if we can find some supplies...");
+
+        // Randomly assign supplies to the array
+        for (int i = 0; i < findableSupplies.Length; i++)
         {
-            scavengeTime = Player.Instance.PlayAnimation("Scavenge");
-            DialogueController.Instance.SetDialgoue("Lets see if we can find some supplies...");
-
-            // Randomly assign supplies to the array
-            for (int i = 0; i < findableSupplies.Length; i++)
-            {
-                int randomIndex = Random.Range(0, possibleSupplies.Length);
-                findableSupplies[i] = possibleSupplies[randomIndex];
-            }
-
-            if (interupt != 0)
-                interuptTime = Random.Range(scavengeTime / 2, scavengeTime - 1.0f);
-
-
-            StartCoroutine(SearchForSupplies(scavengeTime));
+            int randomIndex = Random.Range(0, possibleSupplies.Length);
+            findableSupplies[i] = possibleSupplies[randomIndex];
         }
+
+        interuptTime = Random.Range(scavengeTime / 2, scavengeTime - 1.0f);
+
+        Debug.Log("searching time: " + scavengeTime);
+
+        StartCoroutine(SearchForSupplies(scavengeTime));
     }
 
     IEnumerator SearchForSupplies(float duration)
@@ -65,6 +54,7 @@ public class Scavenge : Action
         {
             elapsed += Time.deltaTime;
 
+
             if (interupt != 0 && elapsed > interuptTime)
             {
                 HandleInterruption(interupt);
@@ -74,6 +64,8 @@ public class Scavenge : Action
             // Step 3: Check for supply time match
             if (supplyIndex < supplyTimes.Count && elapsed >= supplyTimes[supplyIndex])
             {
+                Debug.Log("found supply..");
+
                 Inventory.Instance.AddSupply(findableSupplies[supplyIndex]);
                 supplyIndex++;
             }
@@ -82,7 +74,6 @@ public class Scavenge : Action
             yield return null;
         }
 
-        GameManager.Instance.LoadPrevScene();
     }
 
     void HandleInterruption(int interruptCode)
