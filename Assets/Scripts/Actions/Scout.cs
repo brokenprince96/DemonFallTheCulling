@@ -3,12 +3,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Scout : Action
 {
-    public string survivorName;
     float findSurvivorChance = 0.0f;
-    float totalSearchTime = 10.0f;
+    float totalSearchTime = 5.0f;
+    int survivorIndex = 0;
+    int numSurvivors = 9;
 
     public override void InitAction(string action)
     {
@@ -38,18 +40,19 @@ public class Scout : Action
             
         }
 
-        if (findSurvivorChance > chance)
-        {
+        if (findSurvivorChance > chance && survivorIndex < numSurvivors)
             StartCoroutine(SpawnSurvivor(duration - elapsed));
-        }
+        else
+            DialogueController.Instance.SetDialgoue("No one found");
+
     }
 
     IEnumerator SpawnSurvivor(float duration)
     {
         duration += 5.0f;
-        DialogueController.Instance.SetDialgoue("Someone's there! It's " + survivorName + "!");
-        Object survivor = Resources.Load("Survivors/" + survivorName);
-        GameObject survivorInstance = (GameObject)Instantiate(survivor);
+        DialogueController.Instance.SetDialgoue("Someone's there!");
+        Sprite[] sprites = Resources.LoadAll<Sprite>("SurvivorImages");
+        PartyController.Instance.AddSurvivor(sprites[survivorIndex++]);
 
         float elapsed = 0.0f;
         

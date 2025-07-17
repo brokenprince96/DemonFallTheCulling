@@ -1,15 +1,13 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PartyController : MonoBehaviour
 {
     public static PartyController Instance;
-
     public Button partyButton;
     public Button closeButton;
-    public Image[] images;
+    public Image[] survivorImages;
+    int partySize = 0;
 
     private void Awake()
     {
@@ -31,14 +29,6 @@ public class PartyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (gameObject.activeSelf)
-        {
-            UpdateUI();
-        }
-    }
-
     public void OnPartyClicked()
     {
         gameObject.SetActive(true);
@@ -47,17 +37,13 @@ public class PartyController : MonoBehaviour
     public void OnCloseClicked()
     {
         gameObject.SetActive(false);
-
     }
 
-    void UpdateUI()
+    public void AddSurvivor(Sprite sprite)
     {
-
-    }
-    
-    public void AddSurvivor()
-    {
-
+        //array bounds checked before function call
+        survivorImages[partySize].color = Color.white;
+        survivorImages[partySize++].sprite = sprite;
     }
 
 }
