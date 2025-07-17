@@ -6,33 +6,26 @@ public class Scavenge : Action
 {
     float scavengeTime = 5.0f;
     static float interuptTime = -1.0f;
-    const int numSupplies = 3;
-    Supply[] findableSupplies = new Supply[numSupplies];
+    const int numSupply = 3;
+    Supply[] supply = new Supply[numSupply];
 
     // Prepare a list of possible supplies to choose from
-    Supply[] possibleSupplies = new Supply[]
-    {
-    new Food(),
-    new Tool()
-    };
+    Supply[] findableSupplies = new Supply[] { new Food(), new Tool() };
 
     public override void InitAction(string action)
     {
-        //not all actions load levels
         base.InitAction(action);
 
         DialogueController.Instance.SetDialgoue("Lets see if we can find some supplies...");
 
         // Randomly assign supplies to the array
-        for (int i = 0; i < findableSupplies.Length; i++)
+        for (int i = 0; i < supply.Length; i++)
         {
-            int randomIndex = Random.Range(0, possibleSupplies.Length);
-            findableSupplies[i] = possibleSupplies[randomIndex];
+            int randomIndex = Random.Range(0, findableSupplies.Length);
+            supply[i] = findableSupplies[randomIndex];
         }
 
         interuptTime = Random.Range(scavengeTime / 2, scavengeTime - 1.0f);
-
-        Debug.Log("searching time: " + scavengeTime);
 
         StartCoroutine(SearchForSupplies(scavengeTime));
     }
@@ -41,9 +34,9 @@ public class Scavenge : Action
     {
         float elapsed = 0f;
 
-        // Step 1: Generate 3 unique sorted supply times
+        //Generate 3 unique sorted supply times
         List<float> supplyTimes = new List<float>();
-        for (int i = 0; i < numSupplies; i++)
+        for (int i = 0; i < numSupply; i++)
             supplyTimes.Add(Random.Range(0.5f, duration - 0.5f)); // avoid too close to 0 or end
 
         supplyTimes.Sort(); // ensure they trigger in order
@@ -61,12 +54,10 @@ public class Scavenge : Action
                 yield break;
             }
 
-            // Step 3: Check for supply time match
+            //Check for supply time match
             if (supplyIndex < supplyTimes.Count && elapsed >= supplyTimes[supplyIndex])
             {
-                Debug.Log("found supply..");
-
-                Inventory.Instance.AddSupply(findableSupplies[supplyIndex]);
+                Inventory.Instance.AddSupply(supply[supplyIndex]);
                 supplyIndex++;
             }
 
