@@ -9,7 +9,7 @@ public class PartyController : MonoBehaviour
 
     public Button partyButton;
     public Button closeButton;
-
+    public Image[] images;
 
     private void Awake()
     {
@@ -34,7 +34,9 @@ public class PartyController : MonoBehaviour
     private void Update()
     {
         if (gameObject.activeSelf)
+        {
             UpdateUI();
+        }
     }
 
     public void OnPartyClicked()
@@ -48,8 +50,14 @@ public class PartyController : MonoBehaviour
 
     }
 
-    public void UpdateUI()
+    void UpdateUI()
     {
+
+    }
+    
+    public void AddSurvivor()
+    {
+
     }
 
 }

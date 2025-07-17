@@ -7,40 +7,17 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
     private const int MaxSize = 3; // Set your inventory size limit
     private Supply[] supplies = new Supply[MaxSize];
-    List<Image> inventoryImages = new List<Image>();
+    public List<Image> inventoryImages;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    public void UpdateUI()
-    {
-        Image[] childImageComponents = GetComponentsInChildren<Image>();
-
-        for (int i = 0; i < childImageComponents.Length; i++)
-        {
-            if (childImageComponents[i].name.Contains("InventoryImage"))
-            {
-                inventoryImages.Add(childImageComponents[i]);
-            }
-        }
-
-        for (int i = 0; i < supplies.Length; i++)
-        {
-            if (supplies[i] != null)
-            {
-                inventoryImages[i].sprite = supplies[i].GetImage();
-                inventoryImages[i].color = Color.white; //image is white square if no sprite
-            }
         }
     }
 
@@ -52,7 +29,8 @@ public class Inventory : MonoBehaviour
             if (supplies[i] == null)
             {
                 supplies[i] = newSupply;
-                newSupply.SetImage();
+                inventoryImages[i].sprite = supplies[i].GetImage();
+                inventoryImages[i].color = Color.white; //image is transparent by default
                 DialogueController.Instance.SetDialgoue(newSupply.GetType() + " added!");
                 return true;
             }

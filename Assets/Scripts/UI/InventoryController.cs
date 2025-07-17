@@ -22,18 +22,6 @@ public class InventoryController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (gameObject.activeSelf)
-            Inventory.Instance.UpdateUI();
-    }
-
-    private void OnEnable()
-    {
-        if (Inventory.Instance != null)
-            Inventory.Instance.UpdateUI();
-    }
-
     void OnSupplyClicked(int index)
     {
         Inventory.Instance.UseSupply(index);
