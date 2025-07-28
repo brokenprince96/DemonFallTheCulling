@@ -17,7 +17,9 @@ public class Scout : Action
         //not all actions load scenes
         base.InitAction(action);
 
-        findSurvivorChance = StatController.Instance.GetStat(0) / 10.0f;
+        //stat 0 is perception
+        findSurvivorChance = StatController.Instance.GetStat(0) / 10.0f; // stat range 1-10, chance range 0-1
+        findSurvivorChance = 1.0f;
         StartCoroutine(SearchForSurvivors(totalSearchTime));
     }
 
@@ -49,7 +51,7 @@ public class Scout : Action
 
     IEnumerator SpawnSurvivor(float duration)
     {
-        duration += 5.0f;
+        duration += 3.0f;
         DialogueController.Instance.SetDialgoue("Someone's there!");
         Sprite[] sprites = Resources.LoadAll<Sprite>("SurvivorImages");
         PartyController.Instance.AddSurvivor(sprites[survivorIndex++]);
@@ -59,8 +61,9 @@ public class Scout : Action
         while(elapsed < duration)
         {
             elapsed += Time.deltaTime;
-
             yield return null;
         }
+
+        DialogueController.Instance.SetDialgoue("There's a little more hope now that I have some help...");
     }
 }

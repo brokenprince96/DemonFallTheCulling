@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scavenge : Action
 {
-    float scavengeTime = 5.0f;
+    float scavengeTime = 6.0f;
     static float interuptTime = -1.0f;
     const int numSupply = 3;
     Supply[] supply = new Supply[numSupply];
@@ -37,7 +37,7 @@ public class Scavenge : Action
         //Generate 3 unique sorted supply times
         List<float> supplyTimes = new List<float>();
         for (int i = 0; i < numSupply; i++)
-            supplyTimes.Add(Random.Range(0.5f, duration - 0.5f)); // avoid too close to 0 or end
+            supplyTimes.Add(Random.Range(0.5f, duration - 1.5f)); // avoid too close to 0 or end
 
         supplyTimes.Sort(); // ensure they trigger in order
 
@@ -64,6 +64,8 @@ public class Scavenge : Action
             actionLength = 0;
             yield return null;
         }
+
+        DialogueController.Instance.SetDialgoue("I wonder if there is anything else left to find...");
 
     }
 
