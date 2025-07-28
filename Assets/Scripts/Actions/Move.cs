@@ -18,6 +18,7 @@ public class Move : Action
         float dt = 0.5f;
         int dotCount = 3;
         string baseText = "Lets keep going";
+        interuptTime = Random.Range(0.2f, duration - 0.1f);
 
         while(elapsed < duration)
         {
@@ -26,6 +27,12 @@ public class Move : Action
             dotCount = (dotCount % 3) + 1; // Cycle 1 2 3
             string dots = new('.', dotCount);
             DialogueController.Instance.SetDialgoue(baseText + dots);
+
+            if (interupt != 0 && elapsed > interuptTime)
+            {
+                HandleInterruption(interupt);
+                yield break;
+            }
 
             yield return new WaitForSeconds(dt); // Adjust timing if needed
         }

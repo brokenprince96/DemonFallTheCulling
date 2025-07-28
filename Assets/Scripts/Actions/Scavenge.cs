@@ -5,7 +5,6 @@ using UnityEngine;
 public class Scavenge : Action
 {
     float scavengeTime = 6.0f;
-    static float interuptTime = -1.0f;
     const int numSupply = 3;
     Supply[] supply = new Supply[numSupply];
 
@@ -67,28 +66,6 @@ public class Scavenge : Action
 
         DialogueController.Instance.SetDialgoue("I wonder if there is anything else left to find...");
 
-    }
-
-    void HandleInterruption(int interruptCode)
-    {
-        switch (interruptCode)
-        {
-            case 1:
-                Debug.Log("Enemy Encountered!");
-                GameManager.Instance.LoadActionScene("EnemyEncounter");
-                break;
-
-            case 2:
-                Debug.Log("scripted event");
-                break;
-
-            default:
-                Debug.Log("Unknown interruption.");
-                break;
-        }
-
-        interupt = 0;
-        actionLength = 0;
     }
 
 }
