@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public Slider slider;
     public Player player;
+    public FightManager fightManager;
 
     public void TakeDamage(float damageAmount)
     {
@@ -23,5 +24,10 @@ public class Enemy : MonoBehaviour
     public void InflictDamage(float damageAmount)
     {
         player.TakeDamage(damageAmount);
+    }
+
+    public void EndTurn()
+    {
+        fightManager.EndTurn();
     }
 }

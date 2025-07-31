@@ -27,7 +27,8 @@ public class Player : MonoBehaviour
     //called on button pressed
     public void Attack(string attack)
     {
-        animator.SetTrigger(attack);
+        if(fightManager.PlayerCanAttack())
+            animator.SetTrigger(attack);
     }
 
     public virtual void InflictDamage(float damageAmount)
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
     //call with event at the end of the attack animation
     public void EndTurn()
     {
-        fightManager.EndPlayersTurn();
+        fightManager.EndTurn();
     }
 
 }
