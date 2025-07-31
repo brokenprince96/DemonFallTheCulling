@@ -1,11 +1,14 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public static Player Instance;
     public Enemy enemy;
     public Animator animator;
+    public Slider healthSlider;
+
+    float health = 1.0f;
  
     private void Awake()
     {
@@ -28,6 +31,12 @@ public class Player : MonoBehaviour
     public void InflictDamage(float damageAmount)
     {
         enemy.TakeDamage(damageAmount);
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        healthSlider.value = health;
     }
 
 }
