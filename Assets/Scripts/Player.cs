@@ -24,23 +24,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    //called on button pressed
     public void Attack(string attack)
     {
         animator.SetTrigger(attack);
     }
 
-    public void InflictDamage(float damageAmount)
+    public virtual void InflictDamage(float damageAmount)
     {
         enemy.TakeDamage(damageAmount);
     }
 
-    public void TakeDamage(float damageAmount)
+    public virtual void TakeDamage(float damageAmount)
     {
         animator.SetTrigger("damage");
         health -= damageAmount;
         healthSlider.value = health;
     }
 
+    //call with event at the end of the attack animation
     public void EndTurn()
     {
         fightManager.EndPlayersTurn();
