@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Enemy enemy;
     public Animator animator;
     public Slider healthSlider;
+    public FightManager fightManager;
 
     float health = 1.0f;
  
@@ -35,8 +36,14 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        animator.SetTrigger("damage");
         health -= damageAmount;
         healthSlider.value = health;
+    }
+
+    public void EndTurn()
+    {
+        fightManager.EndPlayersTurn();
     }
 
 }

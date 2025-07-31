@@ -942,6 +942,7 @@ MonoBehaviour:
   enemy: {fileID: 1690633287}
   animator: {fileID: 342661772}
   healthSlider: {fileID: 874842136}
+  fightManager: {fileID: 1555081904}
 --- !u!1 &363528124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4515,6 +4516,51 @@ PrefabInstance:
       addedObject: {fileID: 1582095599}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 854ec0f9ef6c7f946a173906ce1bdfce, type: 3}
+--- !u!1 &1555081903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1555081905}
+  - component: {fileID: 1555081904}
+  m_Layer: 0
+  m_Name: FightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1555081904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555081903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496e28ef57efc3943a4fc25b9473f2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1690633287}
+--- !u!4 &1555081905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555081903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 889.97626, y: 752.1724, z: -1.68008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1555391769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4711,6 +4757,7 @@ MonoBehaviour:
   health: 1
   animator: {fileID: 1690633285}
   slider: {fileID: 671158866}
+  player: {fileID: 342661775}
 --- !u!1001 &1713760897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5491,6 +5538,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1234953253}
   - {fileID: 821923247}
+  - {fileID: 1555081905}
   - {fileID: 330585546}
   - {fileID: 342661773}
   - {fileID: 1690633286}

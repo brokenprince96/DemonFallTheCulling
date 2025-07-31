@@ -6,11 +6,22 @@ public class Enemy : MonoBehaviour
     public float health = 1.0f;
     public Animator animator;
     public Slider slider;
+    public Player player;
 
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         animator.SetTrigger("damage");
         slider.value = health;
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("melee");
+    }
+
+    public void InflictDamage(float damageAmount)
+    {
+        player.TakeDamage(damageAmount);
     }
 }
