@@ -10,7 +10,7 @@ public class Radio : Action
         if (actionLength > 0)
             return;
 
-        StatController.Instance.IncreaseStat(0);
+        GameManager.Instance.IncreaseStat(0);
 
         StartCoroutine(SendOutRadio(actionLength));
     }

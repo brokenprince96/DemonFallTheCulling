@@ -8,7 +8,6 @@ public class ActionController : MonoBehaviour
     public List<Button> actionButtons; // Assigned via Inspector
     public List<Action> possibleActions; // Assigned via Inspector
     public TextMeshProUGUI dayActionsRemaining;
-    int numDayActions = 5;
 
     private void Awake()
     {
@@ -20,7 +19,14 @@ public class ActionController : MonoBehaviour
 
             actionButtons[i].onClick.AddListener(() => OnActionClicked(buttonName));
             possibleActions.Add(actionButtons[i].gameObject.GetComponent<Action>());
+
         }
+    }
+
+    private void Start()
+    {
+        int numDayActions = GameManager.Instance.GetRemainingDayActions();
+        dayActionsRemaining.text = "Day Actions Remaining: " + numDayActions;
     }
 
     void OnActionClicked(string buttonName)
@@ -29,7 +35,9 @@ public class ActionController : MonoBehaviour
         {
             if(buttonName == possibleActions[i].GetType().ToString())
             {
-                dayActionsRemaining.text = "Day Actions Remaining: " + --numDayActions;
+                GameManager.Instance.UseDayAction();
+                int numDayActions = GameManager.Instance.GetRemainingDayActions();
+                dayActionsRemaining.text = "Day Actions Remaining: " + numDayActions;
                 possibleActions[i].InitAction(buttonName);
             }
         }

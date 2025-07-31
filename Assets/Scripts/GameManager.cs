@@ -4,10 +4,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    int perception = 0;
 
-    public Action currentAction;
-    public string prevScene;
-    public string nextScene;
+    int dayActionsRemaining = 5;
 
     private void Awake()
     {
@@ -22,40 +21,42 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void TriggerEnemyEncounter()
+    public void LoadEnemyEncounterScene()
     {
-        SetPrevScene();
-
-        LoadActionScene("EnemyEncounter");
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
-    public void LoadActionScene(string actionName)
+    public void IncreaseStat(int stat)
     {
-        SetPrevScene();
-        string currScene = SceneManager.GetActiveScene().name;
-        string encounterScene = currScene.Substring(0, currScene.IndexOf('_') + 1) + actionName;
-        SceneManager.LoadScene(encounterScene);
+        switch(stat)
+        {
+            case 0:
+                perception++;
+                break;
+        }
     }
 
-    public void LoadPrevScene()
+    public int GetStat(int stat)
     {
-        SceneManager.LoadScene(prevScene);
+        switch (stat)
+        {
+            case 0:
+                return perception;
+        }
+
+        return -1;
     }
 
-    public void LoadNextScene()
+    public int GetRemainingDayActions()
     {
-        SceneManager.LoadScene(nextScene);
+        return dayActionsRemaining;
     }
 
-    public void SetPrevScene()
+    public void UseDayAction()
     {
-        prevScene = SceneManager.GetActiveScene().name;
-    }
-
-    public void SetNextScene()
-    {
-        int currSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        nextScene = SceneManager.GetSceneByBuildIndex(++currSceneIndex).name;
+        if(dayActionsRemaining > 0)
+            dayActionsRemaining--;
     }
 
 }

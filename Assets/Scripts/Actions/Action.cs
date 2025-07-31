@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -28,21 +29,19 @@ public class Action : MonoBehaviour
 
     public virtual void HandleInterruption(int interruptCode)
     {
-        switch (interruptCode)
+        DialogueController.Instance.SetDialgoue("Enemy encountered!");
+        StartCoroutine(InteruptWarmup(3.0f, interruptCode));
+    }
+
+    IEnumerator InteruptWarmup(float duration, int interruptCode)
+    {
+        float elapsed = 0.0f;
+        while (elapsed < duration)
         {
-            case 1:
-                GameManager.Instance.LoadActionScene("EnemyEncounter");
-                break;
-
-            case 2:
-                Debug.Log("scripted event");
-                break;
-
-            default:
-                Debug.Log("Unknown interruption.");
-                break;
+            elapsed += Time.deltaTime;
+            yield return null;
         }
-
+        GameManager.Instance.LoadEnemyEncounterScene();
         interupt = 0;
         actionLength = 0;
     }

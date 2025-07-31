@@ -1,9 +1,5 @@
-using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Scout : Action
 {
@@ -18,7 +14,7 @@ public class Scout : Action
         base.InitAction(action);
 
         //stat 0 is perception
-        findSurvivorChance = StatController.Instance.GetStat(0) / 10.0f; // stat range 1-10, chance range 0-1
+        findSurvivorChance = GameManager.Instance.GetStat(0) / 10.0f; // stat range 1-10, chance range 0-1
         findSurvivorChance = 1.0f;
         StartCoroutine(SearchForSurvivors(totalSearchTime));
     }

@@ -6,20 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DT_01.unity
+    path: Assets/Scenes/DT.unity
     guid: 3b126177382643f45a9ac1abc4724818
-  - enabled: 1
-    path: Assets/Scenes/DT_02.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/DT_EnemyEncounter.unity
     guid: f1b25fcd8c281184190d4ac75096b629
-  - enabled: 1
-    path: Assets/Scenes/DT_Scavenge.unity
-    guid: ef69832a1faf98446a2fe726dc936ea0
-  - enabled: 1
-    path: Assets/Scenes/DT_Scout.unity
-    guid: bc479edc89d3bc0468e7959389708571
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

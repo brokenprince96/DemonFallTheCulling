@@ -4475,7 +4475,7 @@ GameObject:
   - component: {fileID: 1910866178}
   - component: {fileID: 1910866181}
   - component: {fileID: 1910866180}
-  - component: {fileID: 1910866179}
+  - component: {fileID: 1910866182}
   m_Layer: 5
   m_Name: Stats
   m_TagString: Untagged
@@ -4504,21 +4504,6 @@ RectTransform:
   m_AnchoredPosition: {x: 114, y: -32}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1910866179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910866177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ff798d5ac273d74db9fcccdea2ed0d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerButton: {fileID: 1600931083}
-  closeButton: {fileID: 1866156403}
-  perception: {fileID: 1671156129}
 --- !u!114 &1910866180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4557,6 +4542,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910866177}
   m_CullTransparentMesh: 1
+--- !u!114 &1910866182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910866177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff798d5ac273d74db9fcccdea2ed0d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerButton: {fileID: 1600931083}
+  closeButton: {fileID: 1866156403}
+  perception: {fileID: 1671156129}
 --- !u!1 &1954683572
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,7 +5485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Day Actions Remaining: 5'
+  m_text: 'Day Actions Remaining: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6977,9 +6977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e1e3beabd2a0b47851c23bccb8eb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAction: {fileID: 0}
-  prevScene: 
-  nextScene: 
 --- !u!222 &7046528538082604752
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7162,6 +7159,6 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 832575519}
   - {fileID: 1234953253}
+  - {fileID: 4847205440109362033}
   - {fileID: 1492091410}
   - {fileID: 821923247}
-  - {fileID: 4847205440109362033}
