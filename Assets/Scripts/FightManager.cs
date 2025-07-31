@@ -5,6 +5,7 @@ public class FightManager : MonoBehaviour
 {
     public Enemy enemy;
     bool playersTurn = true;
+    bool fightOver = false;
 
     private void Start()
     {
@@ -16,9 +17,24 @@ public class FightManager : MonoBehaviour
         return playersTurn;
     }
 
+    public void EndFight(bool playerWins)
+    {
+        fightOver = true;
+
+        if(playerWins)
+        {
+            DialogueController.Instance.SetDialgoue("Player wins!");
+        }
+        else
+        {
+            DialogueController.Instance.SetDialgoue("Enemy wins!");
+        }
+    }
+
     public void EndTurn()
     {
-        StartCoroutine(ChangeTurns(1.0f));
+        if(!fightOver)
+            StartCoroutine(ChangeTurns(1.0f));
     }
 
     IEnumerator ChangeTurns(float duration)

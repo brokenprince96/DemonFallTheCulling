@@ -12,7 +12,17 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        animator.SetTrigger("damage");
+        if(health <= 0.0f)
+        {
+            health = 0.0f;
+            animator.SetTrigger("dead");
+            fightManager.EndFight(true);
+        }
+        else
+        {
+            animator.SetTrigger("damage");
+        }
+
         slider.value = health;
     }
 
