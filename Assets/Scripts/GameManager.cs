@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public Inventory inventory;
     int perception = 0;
 
     int dayActionsRemaining = 5;
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 
     public void IncreaseStat(int stat)

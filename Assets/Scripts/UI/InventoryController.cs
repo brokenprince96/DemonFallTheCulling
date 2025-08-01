@@ -8,6 +8,7 @@ public class InventoryController : MonoBehaviour
     public Button closeButton;
 
     public List<Button> supplyButtons; // Assigned via Inspector
+    public List<Image> inventoryImages;
 
     void Start()
     {
@@ -20,12 +21,21 @@ public class InventoryController : MonoBehaviour
         openButton.onClick.AddListener(OnOpenClicked);
         closeButton.onClick.AddListener(OnCloseClicked);
         gameObject.SetActive(false);
+
+    public void UpdateImages()
+    {
+        List<Supply> suppllies = Inventory.Instance.GetSupplies();
+
+        for(int i = 0; i < suppllies.Count; i++)
+        {
+            inventoryImages[i].sprite = suppllies[i].GetImage();
+            inventoryImages[i].color = Color.white;
+        }
     }
 
     void OnSupplyClicked(int index)
     {
-        Inventory.Instance.UseSupply(index);
-        supplyButtons[index].GetComponent<Image>().sprite = null;
+
     }
 
     void OnOpenClicked()
