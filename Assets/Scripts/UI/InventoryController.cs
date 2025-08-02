@@ -21,7 +21,7 @@ public class InventoryController : MonoBehaviour
         openButton.onClick.AddListener(OnOpenClicked);
         closeButton.onClick.AddListener(OnCloseClicked);
         gameObject.SetActive(false);
-
+        UpdateImages();
     }
 
     public void UpdateImages()

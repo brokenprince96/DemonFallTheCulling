@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
     // Add supply to the first available slot
     public void AddSupply()
     {

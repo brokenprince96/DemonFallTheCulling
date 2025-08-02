@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,7 @@ public class PartyController : MonoBehaviour
     public static PartyController Instance;
     public Button partyButton;
     public Button closeButton;
-    public Image[] survivorImages;
-    int partySize = 0;
+    public List<Image> survivorImages;
 
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class PartyController : MonoBehaviour
         partyButton.onClick.AddListener(OnPartyClicked);
         closeButton.onClick.AddListener(OnCloseClicked);
         gameObject.SetActive(false);
+        UpdateImages();
     }
 
     public void OnPartyClicked()
@@ -39,11 +40,15 @@ public class PartyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void AddSurvivor(Sprite sprite)
+    public void UpdateImages()
     {
-        //array bounds checked before function call
-        survivorImages[partySize].color = Color.white;
-        survivorImages[partySize++].sprite = sprite;
+        List<Survivor> survivors = Party.Instance.GetPartyMembers();
+
+        for (int i = 0; i < survivors.Count; i++)
+        {
+            survivorImages[i].sprite = survivors[i].GetImage();
+            survivorImages[i].color = Color.white;
+        }
     }
 
 }

@@ -50,11 +50,8 @@ public class Scout : Action
     {
         duration += 3.0f;
         DialogueController.Instance.SetDialgoue("Someone's there!");
-        Sprite[] sprites = Resources.LoadAll<Sprite>("SurvivorImages");
-        PartyController.Instance.AddSurvivor(sprites[survivorIndex++]);
-
+        Party.Instance.AddPartyMemeber();
         float elapsed = 0.0f;
-        
         while(elapsed < duration)
         {
             elapsed += Time.deltaTime;

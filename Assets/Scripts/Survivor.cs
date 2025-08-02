@@ -1,58 +1,25 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Survivor : MonoBehaviour
+public class Survivor
 {
-    public string survivorName;
-    public AnimatorOverrideController overrideController;
-    Animator animator;
+    protected Sprite image;
+    const int numSurvivors = 10;
+    Sprite[] sprites = new Sprite[numSurvivors];
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Survivor()
     {
-        var animator = GetComponent<Animator>();
-        var overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animator.runtimeAnimatorController = overrideController;
+        int survivorIndex = Party.Instance.GetPartyMembers().Count;
 
-        Object[] loadedClips = Resources.LoadAll("Animations/" + survivorName);
-        AnimationClip[] originalClips = overrideController.animationClips;
-
-        var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
-
-        foreach (AnimationClip original in originalClips)
+        if (survivorIndex < numSurvivors)
         {
-            AnimationClip replacement = null;
-
-            // Get suffix like "Idle", "Move", etc
-            // Assumes format like "Remy_Idle" or "James_Move"
-            int underscoreIndex = original.name.IndexOf('_');
-            string suffix = underscoreIndex >= 0 ? original.name.Substring(underscoreIndex) : original.name;
-
-            foreach (Object asset in loadedClips)
-            {
-                if (asset is AnimationClip clip && clip.name.EndsWith(suffix))
-                {
-                    replacement = clip;
-                    break;
-                }
-            }
-
-            if (replacement != null)
-            {
-                overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(original, replacement));
-            }
-            else
-            {
-                overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(original, original));
-            }
+            sprites = Resources.LoadAll<Sprite>("SurvivorImages");
+            Debug.Log("load image:" + survivorIndex);
+            image = sprites[survivorIndex];
         }
-
-        overrideController.ApplyOverrides(overrides);
-
     }
 
-    public void PlayAnimation(string animation)
+    public Sprite GetImage()
     {
-        animator.Play(animation);
+        return image;
     }
 }
