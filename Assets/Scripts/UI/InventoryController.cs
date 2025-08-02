@@ -22,6 +22,8 @@ public class InventoryController : MonoBehaviour
         closeButton.onClick.AddListener(OnCloseClicked);
         gameObject.SetActive(false);
 
+    }
+
     public void UpdateImages()
     {
         List<Supply> suppllies = Inventory.Instance.GetSupplies();

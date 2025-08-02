@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Inventory inventory;
     int perception = 0;
-
     int dayActionsRemaining = 5;
+
 
     private void Awake()
     {

@@ -38,6 +38,8 @@ public class Move : Action
         }
 
         DialogueController.Instance.SetDialgoue("Downtown LA is not looking too good...");
+
+        EndAction();
     }
 
 }

@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour
     {
         Supply supply = new Supply();
         supplies.Add(supply);
+        
     }
 
     public List<Supply> GetSupplies()

@@ -21,6 +21,8 @@ public class Shelter : Action
             yield return null;
         }
 
-        DialogueController.Instance.SetDialgoue("Downtown LA aint no shelter");
+        DialogueController.Instance.SetDialgoue("This shelter helps a little");
+
+        EndAction();
     }
 }

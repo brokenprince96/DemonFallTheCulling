@@ -31,14 +31,17 @@ public class ActionController : MonoBehaviour
 
     void OnActionClicked(string buttonName)
     {
-        for(int i = 0; i < possibleActions.Count; i++)
+        for (int i = 0; i < possibleActions.Count; i++)
         {
             if(buttonName == possibleActions[i].GetType().ToString())
             {
-                GameManager.Instance.UseDayAction();
                 int numDayActions = GameManager.Instance.GetRemainingDayActions();
-                dayActionsRemaining.text = "Day Actions Remaining: " + numDayActions;
-                possibleActions[i].InitAction(buttonName);
+                if(numDayActions > 0)
+                {
+                    GameManager.Instance.UseDayAction();
+                    dayActionsRemaining.text = "Day Actions Remaining: " + --numDayActions;
+                    possibleActions[i].InitAction(buttonName);
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ public class Scavenge : Action
 {
     public InventoryController inventoryController;
     float scavengeTime = 6.0f;
+    int numOfSuppliesToFind = 1;
 
     public override void InitAction(string action)
     {
@@ -21,12 +22,12 @@ public class Scavenge : Action
         {
             elapsed += Time.deltaTime;
 
-            if(elapsed > scavengeTime - scavengeTime/4)
+            if(elapsed > scavengeTime - scavengeTime/4 && numOfSuppliesToFind > 0)
             {
                 DialogueController.Instance.SetDialgoue("Supply Found!");
                 Inventory.Instance.AddSupply();
                 inventoryController.UpdateImages();
-                yield break;
+                numOfSuppliesToFind--;
             }
 
             if (interupt != 0 && elapsed > interuptTime)
@@ -39,6 +40,7 @@ public class Scavenge : Action
             yield return null;
         }
         DialogueController.Instance.SetDialgoue("I wonder if there is anything else left to find...");
+        EndAction();
     }
 
 }

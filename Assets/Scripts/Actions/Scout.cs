@@ -43,6 +43,7 @@ public class Scout : Action
         else
             DialogueController.Instance.SetDialgoue("No one found");
 
+        EndAction();
     }
 
     IEnumerator SpawnSurvivor(float duration)

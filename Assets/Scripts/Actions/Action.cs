@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class Action : MonoBehaviour
@@ -25,6 +24,11 @@ public class Action : MonoBehaviour
         {
             interupt = 2;
         }
+
+        if(GameManager.Instance.GetRemainingDayActions() == 0)
+        {
+            interupt = 3;
+        }
     }
 
     public virtual void HandleInterruption(int interruptCode)
@@ -44,6 +48,14 @@ public class Action : MonoBehaviour
         GameManager.Instance.LoadEnemyEncounterScene();
         interupt = 0;
         actionLength = 0;
+    }
+
+    public virtual void EndAction()
+    {
+        if(interupt == 3)
+        {
+            DialogueController.Instance.SetDialgoue("Night falls...");
+        }
     }
 
 }

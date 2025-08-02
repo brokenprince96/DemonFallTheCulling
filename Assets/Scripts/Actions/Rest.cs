@@ -26,5 +26,7 @@ public class Rest : Action
         }
 
         DialogueController.Instance.SetDialgoue("Downtown LA is cursed, how can it be fixed?");
+
+        EndAction();
     }
 }

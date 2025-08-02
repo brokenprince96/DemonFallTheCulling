@@ -35,5 +35,6 @@ public class Radio : Action
 
         actionLength = -1f;
         DialogueController.Instance.SetDowntownDialogue();
+        EndAction();
     }
 }
