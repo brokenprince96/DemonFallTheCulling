@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     int perception = 0;
     int dayActionsRemaining = 5;
 
-
     private void Awake()
     {
         if(Instance == null)
@@ -19,6 +18,11 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        if(dayActionsRemaining == 0)
+        {
+            NightFall();
         }
     }
     
@@ -63,6 +67,11 @@ public class GameManager : MonoBehaviour
     {
         if(dayActionsRemaining > 0)
             dayActionsRemaining--;
+    }
+
+    public void NightFall()
+    {
+        DialogueController.Instance.SetDialgoue("Night falls...");
     }
 
 }

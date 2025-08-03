@@ -7,12 +7,9 @@ public class Radio : Action
     {
         base.InitAction(action);
 
-        if (actionLength > 0)
-            return;
-
         GameManager.Instance.IncreaseStat(0);
 
-        StartCoroutine(SendOutRadio(actionLength));
+        StartCoroutine(SendOutRadio(5.0f));
     }
 
     IEnumerator SendOutRadio(float duration)
@@ -33,8 +30,8 @@ public class Radio : Action
             yield return new WaitForSeconds(dt); // Adjust timing if needed
         }
 
-        actionLength = -1f;
-        DialogueController.Instance.SetDowntownDialogue();
+        DialogueController.Instance.SetDialgoue("I wonder if anyone else heard that...");
+
         EndAction();
     }
 }

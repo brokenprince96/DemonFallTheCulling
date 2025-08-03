@@ -57,7 +57,5 @@ public class Scout : Action
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        DialogueController.Instance.SetDialgoue("There's a little more hope now that I have some help...");
     }
 }

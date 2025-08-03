@@ -36,9 +36,9 @@ public class Scavenge : Action
                 yield break;
             }
 
-            actionLength = 0;
             yield return null;
         }
+
         DialogueController.Instance.SetDialgoue("I wonder if there is anything else left to find...");
         EndAction();
     }

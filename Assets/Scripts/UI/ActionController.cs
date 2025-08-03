@@ -19,7 +19,6 @@ public class ActionController : MonoBehaviour
 
             actionButtons[i].onClick.AddListener(() => OnActionClicked(buttonName));
             possibleActions.Add(actionButtons[i].gameObject.GetComponent<Action>());
-
         }
     }
 
@@ -36,14 +35,22 @@ public class ActionController : MonoBehaviour
             if(buttonName == possibleActions[i].GetType().ToString())
             {
                 int numDayActions = GameManager.Instance.GetRemainingDayActions();
-                if(numDayActions > 0)
+                Action action = possibleActions[i];
+
+                if (numDayActions > 0 && !action.running())
                 {
-                    GameManager.Instance.UseDayAction();
-                    dayActionsRemaining.text = "Day Actions Remaining: " + --numDayActions;
+                    UseAction();
                     possibleActions[i].InitAction(buttonName);
                 }
             }
         }
+    }
+
+    public void UseAction()
+    {
+        int numDayActions = GameManager.Instance.GetRemainingDayActions();
+        GameManager.Instance.UseDayAction();
+        dayActionsRemaining.text = "Day Actions Remaining: " + --numDayActions;
     }
 
 }

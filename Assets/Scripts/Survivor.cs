@@ -13,7 +13,6 @@ public class Survivor
         if (survivorIndex < numSurvivors)
         {
             sprites = Resources.LoadAll<Sprite>("SurvivorImages");
-            Debug.Log("load image:" + survivorIndex);
             image = sprites[survivorIndex];
         }
     }
