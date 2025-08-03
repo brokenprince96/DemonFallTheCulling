@@ -55,8 +55,6 @@ public class Action : MonoBehaviour
 
     public virtual void EndAction()
     {
-        Debug.Log("EndAction() time: " + Time.time.ToString());
-
         if(interupt == 3)
         {
             GameManager.Instance.NightFall();
