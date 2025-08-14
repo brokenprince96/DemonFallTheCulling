@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Action : MonoBehaviour
 {
+    public Map map;
+
     static protected int interupt = 0;
     static protected bool actionRunning = false;
     protected float interuptTime = 0.0f;
@@ -14,6 +16,7 @@ public class Action : MonoBehaviour
     public virtual void InitAction(string action)
     {
         actionRunning = true;
+        map.Reset();
         float encounterEnemy = Random.Range(0.0f, 1.0f);
         float scriptedEvent = Random.Range(0.0f, 1.0f);
 

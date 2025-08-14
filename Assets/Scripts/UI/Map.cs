@@ -54,4 +54,11 @@ public class Map : MonoBehaviour
         
     }
 
+    public void Reset()
+    {
+        spaces[monsterSpace].sprite = blank;
+        spaces[0].sprite = monster;
+        monsterSpace = 0;
+    }
+
 }
