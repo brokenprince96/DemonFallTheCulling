@@ -5,8 +5,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public Inventory inventory;
+    public bool gameOver = false;
     int perception = 0;
     int dayActionsRemaining = 5;
+    float playerPosition;
+    float monsterPosition;
 
     private void Awake()
     {
@@ -25,7 +28,25 @@ public class GameManager : MonoBehaviour
             NightFall();
         }
     }
-    
+
+
+    public void SetPositions(Vector3 player, Vector3 monster)
+    {
+        playerPosition = player.x;
+        monsterPosition = monster.x;
+        Debug.Log(playerPosition);
+    }
+
+    public float GetPlayer()
+    {
+        return playerPosition;
+    }
+
+    public float GetMonster()
+    {
+        return monsterPosition;
+    }
+
     public void LoadEnemyEncounterScene()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

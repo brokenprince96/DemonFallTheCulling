@@ -1,64 +1,62 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
-    public Sprite monster;
-    public Sprite blank;
-    public List<Image> spaces;
+    public RectTransform player;
+    public RectTransform monster;
+    public float playerXDefault;
+    public float monsterXDefault;
     public Image gameOverSpace;
-    float timer = 0.0f;
-    float timerDefault = 3.0f;
-    int monsterSpace = 0;
-    bool gameOver = false;
+    float monsterMoveSpeed = 8.0f;
+    float playerMoveSpeed = 20.0f;
 
     private void Start()
     {
-        timer = timerDefault;
-        spaces[0].sprite = monster;
+        if(GameManager.Instance.GetPlayer() > 0.0f)
+            Debug.Log(GameManager.Instance.GetPlayer());
     }
 
     private void Update()
     {
-        if(!gameOver)
+        if(!GameManager.Instance.gameOver)
         {
-            timer -= Time.deltaTime;
-
-            if(timer < 0.0f)
+            if(monster.position.x > player.position.x)
             {
-                MoveForward();
-                timer = timerDefault;
+                DialogueController.Instance.SetDialgoue("You have been overtaken by the monster wave...");
+                GameManager.Instance.gameOver = true;
+            }
+            else
+            {
+                monster.Translate(Vector3.right * Time.deltaTime * monsterMoveSpeed);
             }
         }
     }
 
-    void MoveForward()
+    public void MoveForward()
     {
-        monsterSpace++;
+        GameManager.Instance.SetPositions(player.position, monster.position);
 
-        if(monsterSpace < spaces.Count)
-        {
-            spaces[monsterSpace].sprite = monster;
-            spaces[monsterSpace - 1].sprite = blank;
-        }
-        else
-        {
-            spaces[monsterSpace - 1].sprite = blank;
-            gameOverSpace.color = Color.white;
-            gameOverSpace.sprite = monster;
-            gameOver = true;
-            Debug.Log("GAME OVERS!!! :))"); ;
-        }
+        StartCoroutine(MovePlayer(3.0f));
+    }
+
+    IEnumerator MovePlayer(float duration)
+    {
+        float current = 0.0f;
         
-        
+        while(current < duration)
+        {
+            current += Time.deltaTime;
+            player.Translate(Vector3.right * Time.deltaTime * playerMoveSpeed);
+            yield return null; 
+        }
     }
 
     public void Reset()
     {
-        spaces[monsterSpace].sprite = blank;
-        spaces[0].sprite = monster;
-        monsterSpace = 0;
+        
     }
 
 }

@@ -36,8 +36,9 @@ public class ActionController : MonoBehaviour
             {
                 int numDayActions = GameManager.Instance.GetRemainingDayActions();
                 Action action = possibleActions[i];
+                bool gameOver = GameManager.Instance.gameOver;
 
-                if (numDayActions > 0 && !action.running())
+                if (numDayActions > 0 && !action.running() && !gameOver)
                 {
                     UseAction();
                     possibleActions[i].InitAction(buttonName);

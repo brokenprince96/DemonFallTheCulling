@@ -14,6 +14,7 @@ public class Move : Action
 
     IEnumerator Moving(float duration)
     {
+        map.MoveForward();
         float elapsed = 0.0f;
         float dt = 0.5f;
         int dotCount = 3;
