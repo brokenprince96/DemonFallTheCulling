@@ -417,7 +417,7 @@ RectTransform:
   m_GameObject: {fileID: 88931894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2515625, y: 1.3507813, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 907179411}
@@ -425,7 +425,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -245, y: -6.3}
-  m_SizeDelta: {x: 45.7324, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88931896
 MonoBehaviour:
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf6478ef684ce7f4c830edba147c7607, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5997df741b15b74796908d45c101d36, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1965,6 +1965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1553494262}
   monster: {fileID: 88931895}
+  playerXDefault: 0
+  monsterXDefault: 0
   gameOverSpace: {fileID: 1287127310}
 --- !u!1 &968750870
 GameObject:
@@ -6777,6 +6779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 6930215722203124730}
+  gameOver: 0
 --- !u!114 &6930215722203124730
 MonoBehaviour:
   m_ObjectHideFlags: 0
